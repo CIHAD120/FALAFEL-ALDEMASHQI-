@@ -179,3 +179,128 @@ body.dark-mode .menu-item { background: rgba(30, 41, 59, 0.8); border-color: rgb
 #falafel-rain-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; }
 .falling-falafel { position: absolute; top: -50px; font-size: 2rem; animation: fall 3s linear forwards; }
 @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+/* =========================================
+   📱 تحسينات التوافق مع شاشات الهواتف (Mobile Fixes)
+   ========================================= */
+@media screen and (max-width: 480px) {
+    /* تقليل المسافات الجانبية لتوسيع المساحة للمحتوى */
+    body {
+        padding: 4rem 0.5rem 1rem 0.5rem;
+    }
+
+    /* تصغير البطاقة الرئيسية لتناسب الشاشة */
+    .container {
+        padding: 2rem 1rem;
+        border-radius: 24px;
+        width: 95%;
+    }
+
+    /* تصغير اللوجو والنصوص قليلاً */
+    .profile-logo {
+        width: 115px;
+        height: 115px;
+    }
+
+    .brand-name {
+        font-size: 1.8rem;
+    }
+
+    .brand-description {
+        font-size: 1rem;
+    }
+
+    /* تقليل المسافات بين أيقونات التواصل */
+    .social-icons {
+        gap: 0.8rem;
+        margin-bottom: 2rem;
+    }
+
+    .social-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+    }
+
+    /* تعديل حجم أزرار الطلب الرئيسية */
+    .link-btn {
+        min-height: 60px;
+        font-size: 1.1rem;
+        border-radius: 16px;
+    }
+
+    /* =========================================
+       تحسينات المنيو (قائمة الطعام) للهاتف
+       ========================================= */
+    .menu-sheet {
+        padding: 1.5rem 1rem;
+        border-radius: 24px 24px 0 0;
+    }
+
+    /* جعل شريط التنقل العلوي للمنيو يسحب لليمين واليسار بسلاسة */
+    .menu-nav {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        padding-bottom: 10px;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .menu-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-btn {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+        white-space: nowrap; /* منع النص من الانقسام لسطرين */
+    }
+
+    .category-title {
+        font-size: 1.2rem;
+    }
+
+    .menu-item {
+        padding: 1rem 0.5rem;
+    }
+
+    .menu-info h4 {
+        font-size: 1rem;
+    }
+
+    .menu-info .price {
+        font-size: 0.9rem;
+    }
+
+    /* تصغير زر الطلب الأخضر (الواتساب) داخل المنيو */
+    .order-sm-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+}
+
+/* إصلاح مشكلة أزرار التمرير (النافيجيشن) إذا لم تكن مصممة مسبقاً */
+.menu-nav {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+    background: var(--toggle-bg);
+    color: var(--text-primary);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:active {
+    transform: scale(0.9);
+    background: var(--yemeksepeti);
+    color: white;
+}
