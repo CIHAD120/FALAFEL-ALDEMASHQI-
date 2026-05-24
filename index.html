@@ -3,70 +3,458 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>فلافل الدمشقي | أطلب الآن</title>
-    <!-- مكتبة الأيقونات FontAwesome -->
+    <title>فلافل الدمشقي | Al-Damashqi Falafel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- زر التبديل بين الوضع الليلي والنهاري -->
+    <audio id="click-sound" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" preload="auto"></audio>
+
+    <div id="intro-screen" class="intro-screen">
+        <img src="photo_2026-05-24_10-53-51.jpg" alt="لوجو فلافل الدمشقي" class="intro-logo">
+        <div class="loader"></div>
+    </div>
+
+    <div class="bg-slider" id="bg-slider">
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1593504049359-7150d5f84d1a?auto=format&fit=crop&w=1000&q=80');"></div>
+        <div class="bg-overlay"></div>
+    </div>
+
+    <button id="spin-btn-floating" class="floating-btn" aria-label="العب واربح">🎁</button>
+
     <div class="top-controls">
-        <button id="theme-toggle" class="control-btn" aria-label="تبديل المظهر">
-            <i class="fa-solid fa-moon"></i>
-        </button>
-        
+        <button id="theme-toggle" class="control-btn" aria-label="تبديل المظهر"><i class="fa-solid fa-moon"></i></button>
         <button id="lang-toggle" class="control-btn lang-btn" aria-label="تغيير اللغة">TR</button>
     </div>
 
-    <main class="container">
-        <!-- قسم الملف الشخصي (اللوجو والوصف) -->
+    <main class="container" id="main-content">
         <header class="profile-section">
             <div class="logo-wrapper">
-                <!-- ضع مسار اللوجو الخاص بك في src -->
-                <img src="photo_2026-05-21_12-31-43.jpg" alt="لوجو فلافل الدمشقي" class="profile-logo">
+                <img src="photo_2026-05-24_10-53-51.jpg" alt="لوجو فلافل الدمشقي" class="profile-logo" id="magic-logo">
             </div>
-            <h1 class="brand-name">فلافل الدمشقي</h1>
-            <p class="brand-description">
+            
+            <h1 class="brand-name" data-i18n="brandName">فلافل الدمشقي</h1>
+            
+            <div class="smart-status">
+                <span id="dynamic-greeting" class="greeting">صباح الخير ☀️</span>
+                <span id="live-status" class="status open"><span class="dot"></span><span data-i18n="openNow">مفتوح الآن</span></span>
+            </div>
+
+            <p class="brand-description" data-i18n="brandDesc">
                 طعم الفلافل الشامية الأصيلة، مقرمشة ومحضرة يومياً بأجود البهارات. جربها الآن! 🧆✨
             </p>
         </header>
 
-        <!-- قسم أيقونات التواصل الاجتماعي والموقع -->
         <div class="social-icons">
             <a href="https://www.instagram.com/falafel_aldemashki_120?igsh=a2tsbzMwcW90MzRt" class="social-btn instagram" aria-label="انستقرام"><i class="fa-brands fa-instagram"></i></a>
             <a href="https://www.facebook.com/share/18dSvwhUbA/" class="social-btn facebook" aria-label="فيسبوك"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="https://wa.me/905541422220" class="social-btn whatsapp" aria-label="واتساب"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://wa.me/905541422220" class="social-btn whatsapp" id="smart-wa-icon" aria-label="واتساب"><i class="fa-brands fa-whatsapp"></i></a>
             <a href="https://maps.app.goo.gl/kyBLRwhzQiSu8BJY7" class="social-btn location" aria-label="الموقع"><i class="fa-solid fa-location-dot"></i></a>
         </div>
 
-        <!-- قسم روابط التطبيقات والأزرار -->
         <nav class="links-section">
-            <!-- Yemeksepeti -->
+            <button class="link-btn btn-menu" id="open-menu-btn">
+                <i class="fa-solid fa-book-open"></i>
+                <span class="btn-text" data-i18n="menuBtn">المنيو (قائمة الطعام)</span>
+            </button>
+
             <a href="https://yemek.go.link/b1Wpu" class="link-btn btn-yemeksepeti" target="_blank" rel="noopener noreferrer">
                 <i class="fa-solid fa-utensils"></i>
-                <span class="btn-text">اطلب عبر Yemeksepeti</span>
+                <span class="btn-text" data-i18n="yemeksepeti">اطلب عبر Yemeksepeti</span>
             </a>
 
-            <!-- Trendyol Go -->
             <a href="https://tgoyemek.com/restoranlar/453299#bati-yemekleri" class="link-btn btn-trendyol" target="_blank" rel="noopener noreferrer">
                 <i class="fa-solid fa-motorcycle"></i>
-                <span class="btn-text">اطلب عبر Trendyol Go</span>
+                <span class="btn-text" data-i18n="trendyol">اطلب عبر Trendyol Go</span>
             </a>
 
-            <!-- زر إضافي فارغ 1 -->
-            <a href="#" class="link-btn btn-custom" target="_blank" rel="noopener noreferrer">
-                <i class="fa-solid fa-link"></i>
-                <span class="btn-text">رابط إضافي (1)</span>
-            </a>
-
-            <!-- زر إضافي فارغ 2 -->
-            <a href="#" class="link-btn btn-custom" target="_blank" rel="noopener noreferrer">
-                <i class="fa-solid fa-star"></i>
-                <span class="btn-text">رابط إضافي (2)</span>
-            </a>
+            <button class="link-btn btn-custom" id="smart-wa-btn">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span class="btn-text" data-i18n="custom1">تواصل معنا المباشر</span>
+            </button>
         </nav>
     </main>
 
-    <script src="script.js"></script>
+    <div class="modal-overlay" id="menu-modal">
+        <div class="bottom-sheet menu-sheet">
+            <div class="sheet-header">
+                <h3 data-i18n="menuTitle">المنيو | قائمة الطعام 🧆</h3>
+                <button class="close-btn" id="close-menu"><i class="fa-solid fa-times"></i></button>
+            </div>
+            
+            <div class="menu-nav">
+                <button class="nav-btn" onclick="document.getElementById('cat-falafel').scrollIntoView({behavior: 'smooth'})">دوروم فلافل</button>
+                <button class="nav-btn" onclick="document.getElementById('cat-western').scrollIntoView({behavior: 'smooth'})">غربي</button>
+                <button class="nav-btn" onclick="document.getElementById('cat-shami').scrollIntoView({behavior: 'smooth'})">شاميات</button>
+                <button class="nav-btn" onclick="document.getElementById('cat-salad').scrollIntoView({behavior: 'smooth'})">سلطات</button>
+            </div>
+
+            <div class="menu-items-container" id="menu-scroll-container">
+                
+                <div class="menu-category" id="cat-falafel">
+                    <h4 class="category-title">دوروم فلافل <span>Falafel Dürüm</span></h4>
+                    
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>فلافل لف</h4>
+                            <p class="price">100 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('فلافل لف', '100 TL')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>فلافل دبل <span class="tag tag-best">🔥 الأكثر طلباً</span></h4>
+                            <p class="price">115 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('فلافل دبل', '115 TL')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>فلافل مع فول</h4>
+                            <p class="price">115 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('فلافل مع فول', '115 TL')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>فلافل مع بطاطا</h4>
+                            <p class="price">115 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('فلافل مع بطاطا', '115 TL')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>فلافل عربي مع بطاطا <span class="tag tag-new">⭐ مميز</span></h4>
+                            <p class="price">175 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('فلافل عربي مع بطاطا', '175 TL')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <div class="menu-category" id="cat-western">
+                    <h4 class="category-title">قسم الغربي <span>Western Meals</span> </h4>
+                    
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>كريسبي <small>(Acılı çıtır tavuk)</small> <span class="tag tag-best">👑 توصية الشيف</span>
+                            <p class="price" style="font-size: 0.85rem;">دوروم: 140 TL | عربي: 210 TL | وجبة: 235 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('كريسبي', 'يرجى تحديد: دوروم أو عربي أو وجبة')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>سكالوب <small>(Galata ünlü çıtır tavuk)</small></h4>
+                            <p class="price" style="font-size: 0.85rem;">دوروم: 140 TL | عربي: 210 TL | وجبة: 235 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('سكالوب', 'يرجى تحديد: دوروم أو عربي أو وجبة')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>زنجر <small>(Çıtır tavuk göğsü)</small> <span class="tag tag-best">👑 توصية الشيف</span> <span class="tag tag-hot">🌶️ حار</span></h4> </h4>
+                            <p class="price" style="font-size: 0.85rem;">دوروم: 140 TL | عربي: 210 TL | وجبة: 240 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('زنجر', 'يرجى تحديد: دوروم أو عربي أو وجبة')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>فرانشيسكو</h4>
+                            <p class="price" style="font-size: 0.85rem;">دوروم: 140 TL | عربي: 210 TL | وجبة: 240 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('فرانشيسكو', 'يرجى تحديد: دوروم أو عربي أو وجبة')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>فاهيتا <small>(Fajita)</small></h4>
+                            <p class="price" style="font-size: 0.85rem;">دوروم: 140 TL | عربي: 210 TL | وجبة: 240 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('فاهيتا', 'يرجى تحديد: دوروم أو عربي أو وجبة')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>مكسيكي</h4>
+                            <p class="price" style="font-size: 0.85rem;">دوروم: 140 TL | عربي: 210 TL | وجبة: 235 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('مكسيكي', 'يرجى تحديد: دوروم أو عربي أو وجبة')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>شيش طاووق <small>(Tavuk şiş)</small></h4>
+                            <p class="price" style="font-size: 0.85rem;">دوروم: 140 TL | عربي: 210 TL | وجبة: 235 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('شيش طاووق', 'يرجى تحديد: دوروم أو عربي أو وجبة')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>بطاطا <small>(Patates)</small></h4>
+                            <p class="price" style="font-size: 0.85rem;">دوروم: 115 TL | عربي: 175 TL | وجبة: 140 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('بطاطا', 'يرجى تحديد: دوروم أو عربي أو وجبة')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>بطاطا مع قشقوان</h4>
+                            <p class="price" style="font-size: 0.85rem;">دوروم: 150 TL | عربي: 220 TL | وجبة: 180 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('بطاطا مع قشقوان', 'يرجى تحديد: دوروم أو عربي أو وجبة')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <div class="menu-category" id="cat-shami">
+                    <h4 class="category-title">شاميات <span>Hummus & Foul</span></h4>
+                    
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>فول بطحينة</h4>
+                            <p class="price">145 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('فول بطحينة', '145 TL')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>فول مدمس بزيت</h4>
+                            <p class="price">145 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('فول مدمس بزيت', '145 TL')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>فول بطحينة مهروس</h4>
+                            <p class="price">145 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('فول بطحينة مهروس', '145 TL')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>فول بزيت مهروس</h4>
+                            <p class="price">145 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('فول بزيت مهروس', '145 TL')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>حمص حب طحينة</h4>
+                            <p class="price">145 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('حمص حب طحينة', '145 TL')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>حمص حب بزيت</h4>
+                            <p class="price">140 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('حمص حب بزيت', '140 TL')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>حمص بطحينة (مسبحة)</h4>
+                            <p class="price">160 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('حمص بطحينة (مسبحة)', '160 TL')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>فتة بزيت بلدي</h4>
+                            <p class="price">160 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('فتة بزيت بلدي', '160 TL')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>فتة بسمنة</h4>
+                            <p class="price">160 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('فتة بسمنة', '160 TL')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>فتة بزيت فقسة</h4>
+                            <p class="price">145 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('فتة بزيت فقسة', '145 TL')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>فتة بالكاجو</h4>
+                            <p class="price">245 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('فتة بالكاجو', '245 TL')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>فتة باللحمة</h4>
+                            <p class="price">270 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('فتة باللحمة', '270 TL')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>مسبحة بيروتية</h4>
+                            <p class="price">145 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('مسبحة بيروتية', '145 TL')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>مسبحة باللحمة</h4>
+                            <p class="price">250 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('مسبحة باللحمة', '250 TL')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>مسبحة بالكاجو</h4>
+                            <p class="price">245 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('مسبحة بالكاجو', '245 TL')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>متبل باذنجان</h4>
+                            <p class="price">110 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('متبل باذنجان', '110 TL')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>فلافل 6 قرص</h4>
+                            <p class="price">110 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('فلافل 6 قرص', '110 TL')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>فلافل 10 قرص</h4>
+                            <p class="price">160 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('فلافل 10 قرص', '160 TL')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <div class="menu-category" id="cat-salad">
+                    <h4 class="category-title">سلطات وإضافات <span>Salads & Extras</span></h4>
+                    
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>سلطة شرقية</h4>
+                            <p class="price">130 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('سلطة شرقية', '130 TL')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>فتوش</h4>
+                            <p class="price">130 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('فتوش', '130 TL')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>تبولة</h4>
+                            <p class="price">140 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('تبولة', '140 TL')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>سلطة روسية</h4>
+                            <p class="price">130 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('سلطة روسية', '130 TL')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>زينة خضرة</h4>
+                            <p class="price">30 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('زينة خضرة', '30 TL')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>سيرفيس</h4>
+                            <p class="price">25 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('سيرفيس', '25 TL')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h4>مايونيز</h4>
+                            <p class="price">25 TL</p>
+                        </div>
+                        <button class="order-sm-btn" onclick="orderItem('مايونيز', '25 TL')"><i class="fa-brands fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="wa-modal">
+        <div class="popup-box">
+            <h3 data-i18n="waTitle">كيف يمكننا مساعدتك؟ 💬</h3>
+            <div class="wa-options">
+                <button class="wa-option-btn" onclick="sendWA('delivery')" data-i18n="waDelivery">🛵 طلب توصيل</button>
+                <button class="wa-option-btn" onclick="sendWA('table')" data-i18n="waTable">🍽️ حجز طاولة</button>
+            </div>
+            <button class="close-btn-circle" id="close-wa"><i class="fa-solid fa-times"></i></button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="spin-modal">
+        <div class="popup-box text-center">
+            <h3 data-i18n="spinTitle">العب واربح! 🎁</h3>
+            <p data-i18n="spinDesc">لف العجلة لتربح خصماً</p>
+            <div class="wheel-container">
+                <div class="wheel" id="wheel">
+                    <div class="wheel-section" style="--i:1; background:#ea004b;"></div>
+                    <div class="wheel-section" style="--i:2; background:#f27a1a;"></div>
+                    <div class="wheel-section" style="--i:3; background:#2b6cb0;"></div>
+                    <div class="wheel-section" style="--i:4; background:#48bb78;"></div>
+                </div>
+                <div class="wheel-pointer">▼</div>
+            </div>
+            <button class="spin-action-btn" id="start-spin" data-i18n="spinBtn">لف العجلة!</button>
+            <p id="spin-result" class="spin-result"></p>
+            <button class="close-btn-circle" id="close-spin"><i class="fa-solid fa-times"></i></button>
+        </div>
+    </div>
+
+    <div id="falafel-rain-container"></div>
+    <script src="script.js?v=2.0"></script>
+    
 </body>
 </html>
