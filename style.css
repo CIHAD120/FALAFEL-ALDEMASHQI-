@@ -307,8 +307,7 @@ body.dark-mode .menu-item { background: rgba(30, 41, 59, 0.8); border-color: rgb
     color: white;
 }
 .btn-custon {
-    background-color: rgb(231, 75, 13); /* هذا هو اللون الذي تريد تغييره */
+    background-color: rgb(255, 58, 9); /* هذا هو اللون الذي تريد تغييره */
     color: white; /* لون النص */
    
-    /* ... خصائص أخرى */
 }
