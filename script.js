@@ -77,6 +77,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("close-wa")?.addEventListener("click", () => closeModal("wa-modal"));
     document.getElementById("spin-btn-floating")?.addEventListener("click", () => openModal("spin-modal"));
     document.getElementById("close-spin")?.addEventListener("click", () => closeModal("spin-modal"));
+    document.getElementById('wifi-btn').addEventListener('click', function() {
+    alert("كلمة سر الواي فاي هي:123456789g");
+});
 
     window.scrollToCat = (id) => {
         const el = document.getElementById(id);
