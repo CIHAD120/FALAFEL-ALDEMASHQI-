@@ -241,7 +241,7 @@ body.dark-mode .menu-item { background: rgba(30, 41, 59, 0.8); border-color: rgb
         display: flex;
         gap: 8px;
         overflow-x: auto;
-        padding-bottom: 10px;
+        padding-bottom: 20px;
         -ms-overflow-style: none;
         scrollbar-width: none;
     }
@@ -250,11 +250,13 @@ body.dark-mode .menu-item { background: rgba(30, 41, 59, 0.8); border-color: rgb
     }
 
     .nav-btn {
-        padding: 6px 12px;
-        font-size: 0.9rem;
-        white-space: nowrap; /* منع النص من الانقسام لسطرين */
-    }
-
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    /* استبدل nowrap بـ normal أو wrap للسماح للنص بالانقسام */
+    white-space: normal; 
+    /* إضافة محاذاة للنص لضمان التنسيق الجيد عند تعدد الأسطر */
+    text-align: center; 
+        }
     .category-title {
         font-size: 1.2rem;
     }
@@ -303,4 +305,10 @@ body.dark-mode .menu-item { background: rgba(30, 41, 59, 0.8); border-color: rgb
     transform: scale(0.9);
     background: var(--yemeksepeti);
     color: white;
+}
+.btn-custon {
+    background-color: rgb(231, 75, 13); /* هذا هو اللون الذي تريد تغييره */
+    color: white; /* لون النص */
+   
+    /* ... خصائص أخرى */
 }
