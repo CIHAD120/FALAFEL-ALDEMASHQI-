@@ -50,6 +50,8 @@
         <button id="lang-toggle" class="control-btn lang-btn" aria-label="تغيير اللغة">TR</button>
     </div>
     
+    <!-- غلاف مرن (Flexbox Wrapper) لضمان ترتيب البطاقة والفوتر عمودياً وتوسيطهما -->
+    <div style="display: flex; flex-direction: column; align-items: center; width: 100%; flex-grow: 1; position: relative; z-index: 1;">
     <main class="container" id="main-content">
         <header class="profile-section">
             <div class="logo-wrapper">
@@ -105,13 +107,14 @@
         </nav>
     </main>
     
-    <footer style="text-align: center; padding: 20px 10px; margin-top: auto; margin-bottom: 20px; font-size: 0.9rem; color: var(--text-secondary); direction: rtl; z-index: 10; width: 100%;">
+    <footer style="text-align: center; padding: 20px 10px; margin-top: auto; margin-bottom: 20px; font-size: 0.9rem; color: var(--text-secondary); direction: rtl; width: 100%; max-width: 480px;">
         <p style="margin-bottom: 8px;">جميع الحقوق محفوظة &copy; 2024 | برمجة وتطوير: <strong>جهاد احمد</strong></p>
         <div style="display: flex; justify-content: center; gap: 15px; margin-top: 10px; font-size: 1rem;">
             <a href="https://wa.me/905343141968" target="_blank" style="color: #25D366; text-decoration: none; font-weight: bold;"><i class="fa-brands fa-whatsapp"></i> تواصل مع المبرمج</a>
             <a href="mailto:jehad6004@gmail.com" style="color: #EA4335; text-decoration: none; font-weight: bold;"><i class="fa-solid fa-envelope"></i> راسلني</a>
         </div>
     </footer>
+    </div>
 
     <div class="modal-overlay" id="menu-modal">
         <div class="bottom-sheet menu-sheet">
