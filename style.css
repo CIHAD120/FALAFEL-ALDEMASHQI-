@@ -1,313 +1,642 @@
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
 
+
+
 :root {
+
     --bg-overlay: rgba(255, 255, 255, 0.7);
+
     --surface-color: rgba(255, 255, 255, 0.85);
+
     --text-primary: #2d3748;
+
     --text-secondary: #4a5568;
+
     --toggle-bg: #edf2f7;
+
     --toggle-text: #2d3748;
+
     --yemeksepeti: #ea004b;
+
     --trendyol: #f27a1a;
+
     --menu-color: #2b6cb0;
+
     --custom-btn: #4a5568;
+
     --wa-color: #25D366;
+
 }
+
+
 
 body.dark-mode {
+
     --bg-overlay: rgba(17, 24, 39, 0.85);
+
     --surface-color: rgba(17, 24, 39, 0.85);
+
     --text-primary: #f7fafc;
+
     --text-secondary: #e2e8f0;
+
     --toggle-bg: #2d3748;
+
     --toggle-text: #fbd38d;
+
 }
+
+
 
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tajawal', sans-serif; }
+
 button, a, .social-btn { cursor: pointer; }
 
+
+
 body {
+
     color: var(--text-primary); display: flex; justify-content: center; align-items: flex-start;
+
     min-height: 100vh; padding: 5rem 1rem 2rem 1rem; overflow-x: hidden; position: relative;
+
     --move-x: 0px; --move-y: 0px;
+
 }
+
+
 
 /* الأساسيات */
-.intro-screen { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #111827; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity 0.8s ease, visibility 0.8s ease; }
-.intro-screen.hidden { opacity: 0; visibility: hidden; }
+
+.intro-screen { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #111827; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
+
+.intro-screen.hidden { opacity: 0; visibility: hidden; transform: translateY(-100%); }
+
 .intro-logo { width: 160px; height: 160px; border-radius: 50%; margin-bottom: 2rem; animation: pulseLogo 1.5s infinite alternate; }
+
 .loader { width: 40px; height: 40px; border: 4px solid rgba(255,255,255,0.3); border-top-color: #fbd38d; border-radius: 50%; animation: spin 1s linear infinite; }
+
 @keyframes pulseLogo { 0% { transform: scale(0.95); } 100% { transform: scale(1.05); } }
+
 @keyframes spin { to { transform: rotate(360deg); } }
 
+
+
 .bg-slider { position: fixed; top: -5%; left: -5%; width: 110vw; height: 110vh; z-index: -2; transform: translate(calc(var(--move-x) * -1), calc(var(--move-y) * -1)); transition: transform 0.1s ease-out; }
+
 .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; }
+
 .bg-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-overlay); backdrop-filter: blur(8px); }
 
+
+
 .top-controls { position: absolute; top: 1.2rem; left: 1.2rem; right: 1.2rem; display: flex; justify-content: space-between; z-index: 10; opacity: 0; }
+
 .control-btn { background-color: var(--toggle-bg); color: var(--toggle-text); border: none; border-radius: 50%; width: 45px; height: 45px; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: all 0.3s ease; }
+
 .lang-btn { font-weight: bold; border-radius: 12px; width: 55px; }
 
+
+
 .floating-btn { position: fixed; bottom: 2rem; left: 1.5rem; width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(45deg, #FFD700, #FFA500); border: none; font-size: 2rem; box-shadow: 0 10px 20px rgba(0,0,0,0.2); z-index: 100; animation: bounce 2s infinite; }
+
 @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
+
+
 .container { width: 100%; max-width: 480px; background: var(--surface-color); backdrop-filter: blur(20px); border-radius: 28px; padding: 2.5rem 1.5rem; box-shadow: 0 20px 40px rgba(0,0,0,0.1); display: flex; flex-direction: column; align-items: center; margin: 0 auto; z-index: 1; opacity: 0; }
+
 .show-content { animation: fadeUpMain 0.8s forwards; }
+
 @keyframes fadeUpMain { 0% { opacity: 0; transform: translateY(40px); } 100% { opacity: 1; transform: translateY(0); } }
+
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
+
+
 .profile-section { text-align: center; margin-bottom: 2rem; }
+
 .profile-logo { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 4px solid var(--toggle-bg); transition: transform 0.3s ease; }
+
 .brand-name { font-size: 2.2rem; font-weight: 800; margin-bottom: 0.2rem; }
 
+
+
 /* حالة المطعم */
+
 .smart-status { display: flex; justify-content: center; gap: 10px; margin-bottom: 1rem; font-size: 0.95rem; font-weight: bold; }
+
 .greeting { color: var(--text-secondary); }
+
 .status { display: flex; align-items: center; gap: 5px; padding: 2px 10px; border-radius: 12px; }
+
 .status.open { background: rgba(37, 211, 102, 0.2); color: #25D366; }
+
 .status.closed { background: rgba(234, 0, 75, 0.2); color: #ea004b; }
+
 .dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; animation: blink 1.5s infinite; }
+
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
+
+
 .brand-description { font-size: 1.15rem; color: var(--text-secondary); line-height: 1.6; max-width: 95%; margin: 0 auto; }
+
 .social-icons { display: flex; gap: 1.2rem; margin-bottom: 2.5rem; }
+
 .social-btn { width: 50px; height: 50px; display: flex; justify-content: center; align-items: center; border-radius: 50%; color: white; font-size: 1.4rem; text-decoration: none; transition: all 0.2s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+
 .social-btn.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+
 .social-btn.facebook { background: #1877F2; }
+
 .social-btn.whatsapp { background: #25D366; }
+
 .social-btn.location { background: #EA4335; }
 
+
+
 .links-section { width: 100%; display: flex; flex-direction: column; gap: 1.2rem; }
-.link-btn { border: none; display: flex; align-items: center; justify-content: center; gap: 0.75rem; width: 100%; min-height: 70px; border-radius: 20px; text-decoration: none; font-weight: 700; font-size: 1.25rem; color: #ffffff; transition: all 0.2s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+
+.link-btn { border: none; display: flex; align-items: center; justify-content: center; gap: 0.75rem; width: 100%; min-height: 70px; border-radius: 20px; text-decoration: none; font-weight: 700; font-size: 1.25rem; color: #ffffff; transition: all 0.2s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.1); position: relative; overflow: hidden; }
+
+/* تأثير اللمعان (Shimmer Effect) */
+.link-btn::after {
+    content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-20deg); animation: shimmer 3s infinite; pointer-events: none;
+}
+@keyframes shimmer { 100% { left: 200%; } }
+
+/* تأثير التموج عند النقر (Ripple Effect) */
+.ripple { position: absolute; border-radius: 50%; background: rgba(255, 255, 255, 0.4); transform: scale(0); animation: rippleEffect 0.6s linear; pointer-events: none; }
+@keyframes rippleEffect { to { transform: scale(4); opacity: 0; } }
+
 .btn-menu { background-color: var(--menu-color); }
+
 .btn-yemeksepeti { background-color: var(--yemeksepeti); }
+
 .btn-trendyol { background-color: var(--trendyol); }
+
 .btn-custom { background-color: var(--wa-color); }
 
+.btn-complaint { background: linear-gradient(45deg, #e53e3e, #c53030); }
+
+.btn-wifi { background: linear-gradient(45deg, #3182ce, #2b6cb0); }
+
+/* رسالة الترحيب (Toast) */
+.toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(150px); background: var(--surface-color); backdrop-filter: blur(15px); padding: 15px 20px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 15px; z-index: 10000; opacity: 0; transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55); width: 90%; max-width: 400px; border: 1px solid rgba(200,200,200,0.2); }
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+.toast-icon { font-size: 2.2rem; animation: wave 2.5s infinite; transform-origin: 70% 70%; }
+@keyframes wave { 0% { transform: rotate(0deg) } 10% { transform: rotate(14deg) } 20% { transform: rotate(-8deg) } 30% { transform: rotate(14deg) } 40% { transform: rotate(-4deg) } 50% { transform: rotate(10deg) } 60% { transform: rotate(0deg) } 100% { transform: rotate(0deg) } }
+.toast-content h4 { font-size: 1.05rem; color: var(--text-primary); margin-bottom: 4px; font-weight: 800; }
+.toast-content p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4; font-weight: 500; }
+.toast-close { background: none; border: none; color: var(--text-secondary); font-size: 1.2rem; margin-right: auto; padding: 5px; opacity: 0.7; transition: opacity 0.3s; }
+.toast-close:hover { opacity: 1; }
+
+
+
 /* =========================================
+
    تنسيقات المنيو الاستثنائي (The World-Class Menu)
+
    ========================================= */
+
 .modal-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.4s ease; display: flex; justify-content: center; align-items: center; }
+
 .modal-overlay.active { opacity: 1; visibility: visible; }
 
+
+
 .menu-sheet {
-    position: absolute; bottom: -100%; width: 100%; max-width: 550px; 
-    background: var(--surface-color); border-radius: 30px 30px 0 0; 
-    padding: 1.5rem 1rem 2rem 1rem; transition: bottom 0.4s; 
+
+    position: absolute; bottom: -100%; width: 100%; max-width: 550px;
+
+    background: var(--surface-color); border-radius: 30px 30px 0 0;
+
+    padding: 1.5rem 1rem 2rem 1rem; transition: bottom 0.4s;
+
     display: flex; flex-direction: column; max-height: 90vh; overflow: hidden;
+
 }
+
 .modal-overlay.active .menu-sheet { bottom: 0; }
 
+
+
 .sheet-header { display: flex; justify-content: space-between; align-items: center; padding: 0 1rem 1rem 1rem; border-bottom: 2px solid rgba(150,150,150,0.1); }
+
 .close-btn { background: none; border: none; font-size: 1.5rem; color: var(--text-primary); }
 
+
+
 /* شريط التنقل السريع */
+
 .menu-nav {
-    display: flex; gap: 8px; overflow-x: auto; padding: 10px 5px; 
+
+    display: flex; gap: 8px; overflow-x: auto; padding: 10px 5px;
+
     position: sticky; top: 0; background: transparent; z-index: 10;
+
     scrollbar-width: none; border-bottom: 1px solid rgba(150,150,150,0.1);
+
 }
+
 .menu-nav::-webkit-scrollbar { display: none; }
+
 .nav-btn {
-    background: var(--toggle-bg); color: var(--text-primary); border: none; 
-    padding: 8px 16px; border-radius: 20px; white-space: nowrap; 
+
+    background: var(--toggle-bg); color: var(--text-primary); border: none;
+
+    padding: 8px 16px; border-radius: 20px; white-space: nowrap;
+
     font-weight: bold; font-size: 0.9rem; transition: 0.2s;
+
 }
+
 .nav-btn:active { transform: scale(0.9); background: var(--yemeksepeti); color: white; }
 
+
+
 .menu-items-container {
+
     overflow-y: auto; padding: 10px; scroll-behavior: smooth;
+
     scrollbar-width: thin; scrollbar-color: var(--yemeksepeti) transparent;
+
 }
+
 .menu-items-container::-webkit-scrollbar { width: 5px; }
 
+
+
 .category-title {
+
     font-size: 1.3rem; color: var(--text-primary); padding: 0.5rem 1rem; margin-top: 1rem; margin-bottom: 1rem;
+
     background: rgba(234, 0, 75, 0.05); border-radius: 12px; border-right: 4px solid var(--yemeksepeti);
+
     display: flex; justify-content: space-between; align-items: center;
+
 }
+
 .category-title span { font-size: 0.8rem; color: var(--text-secondary); font-weight: normal; }
 
+
+
 /* البطاقات الطافية */
+
 .menu-item {
+
     display: flex; justify-content: space-between; align-items: center;
+
     padding: 1.2rem; margin-bottom: 1rem; background: rgba(255, 255, 255, 0.6);
+
     border: 1px solid rgba(200, 200, 200, 0.3); border-radius: 16px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    
+    opacity: 0; transform: translateY(30px);
+
 }
+.menu-item.show-item { opacity: 1; transform: translateY(0); }
+
 body.dark-mode .menu-item { background: rgba(30, 41, 59, 0.8); border-color: rgba(100, 100, 100, 0.2); }
 
+
+
 .menu-item:hover, .menu-item:active {
+
     transform: translateY(-4px) scale(1.02);
+
     box-shadow: 0 10px 25px rgba(234, 0, 75, 0.1); border-color: rgba(234, 0, 75, 0.3);
+
 }
+
+
 
 .menu-info h4 { font-size: 1.1rem; color: var(--text-primary); margin-bottom: 5px; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
 
+
+
 /* العلامات الذكية */
+
 .tag { font-size: 0.65rem; padding: 3px 8px; border-radius: 8px; font-weight: bold; color: white; }
+
 .tag-hot { background: linear-gradient(45deg, #ff416c, #ff4b2b); }
+
 .tag-best { background: linear-gradient(45deg, #f27a1a, #f6d365); color: #111; }
+
 .tag-new { background: linear-gradient(45deg, #25D366, #128C7E); }
 
+
+
 /* تسعير النيون */
+
 .menu-item .price { font-size: 1.05rem; color: var(--yemeksepeti); font-weight: 800; transition: all 0.3s ease; }
+
 .menu-item:hover .price { text-shadow: 0 0 8px rgba(234, 0, 75, 0.4); }
 
+
+
 /* زر الطلب الفاخر */
+
 .order-sm-btn {
+
     background: transparent; color: var(--wa-color); border: 2px solid rgba(37, 211, 102, 0.3);
+
     width: 45px; height: 45px; border-radius: 50%; font-size: 1.4rem; display: flex; justify-content: center; align-items: center; transition: all 0.3s ease;
+
 }
+
 .menu-item:hover .order-sm-btn, .order-sm-btn:active {
+
     background: var(--wa-color); color: white; border-color: var(--wa-color); transform: rotate(-10deg) scale(1.1);
+
 }
+
+
 
 /* نوافذ أخرى (واتساب، حظ) */
+
 .popup-box { background: var(--surface-color); padding: 2.5rem 2rem; border-radius: 24px; width: 90%; max-width: 400px; position: relative; transform: scale(0.8); transition: transform 0.4s ease; text-align: center; }
+
 .modal-overlay.active .popup-box { transform: scale(1); }
+
 .close-btn-circle { position: absolute; top: -15px; right: -15px; width: 40px; height: 40px; background: #ea004b; color: white; border: none; border-radius: 50%; font-size: 1.2rem; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+
 .wa-options { display: flex; flex-direction: column; gap: 10px; margin-top: 1.5rem; }
+
 .wa-option-btn { background: var(--toggle-bg); color: var(--text-primary); border: none; padding: 15px; border-radius: 15px; font-size: 1.1rem; font-weight: bold; transition: background 0.2s; }
 
-.wheel-container { position: relative; width: 200px; height: 200px; margin: 1.5rem auto; }
-.wheel { width: 100%; height: 100%; border-radius: 50%; border: 5px solid var(--text-primary); overflow: hidden; position: relative; transition: transform 3s cubic-bezier(0.25, 1, 0.5, 1); background: conic-gradient(#ea004b 0 90deg, #f27a1a 90deg 180deg, #2b6cb0 180deg 270deg, #48bb78 270deg 360deg); }
-.wheel-pointer { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); font-size: 2rem; color: var(--text-primary); z-index: 2; }
+
+
 .spin-action-btn { background: linear-gradient(45deg, #FFD700, #FFA500); border: none; padding: 12px 30px; border-radius: 20px; font-size: 1.2rem; font-weight: bold; color: #111; margin-top: 1rem; }
-.spin-result { margin-top: 1rem; font-weight: bold; font-size: 1.2rem; color: var(--yemeksepeti); min-height: 25px; }
+
+
 
 #falafel-rain-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; }
+
 .falling-falafel { position: absolute; top: -50px; font-size: 2rem; animation: fall 3s linear forwards; }
+
 @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+
+/* نظام التقييم */
+.rating-stars { display: flex; justify-content: center; gap: 10px; margin: 1.5rem 0; direction: ltr; }
+.star { font-size: 2.2rem; color: #e2e8f0; cursor: pointer; transition: all 0.2s ease; }
+.star.hovered, .star.selected { color: #f6e05e; transform: scale(1.15); text-shadow: 0 0 12px rgba(246, 224, 94, 0.4); }
+body.dark-mode .star { color: #4a5568; }
+
 /* =========================================
+
    📱 تحسينات التوافق مع شاشات الهواتف (Mobile Fixes)
+
    ========================================= */
+
 @media screen and (max-width: 480px) {
+
     /* تقليل المسافات الجانبية لتوسيع المساحة للمحتوى */
+
     body {
+
         padding: 4rem 0.5rem 1rem 0.5rem;
+
     }
+
+
 
     /* تصغير البطاقة الرئيسية لتناسب الشاشة */
+
     .container {
+
         padding: 2rem 1rem;
+
         border-radius: 24px;
+
         width: 95%;
+
     }
+
+
 
     /* تصغير اللوجو والنصوص قليلاً */
+
     .profile-logo {
+
         width: 115px;
+
         height: 115px;
+
     }
+
+
 
     .brand-name {
+
         font-size: 1.8rem;
+
     }
+
+
 
     .brand-description {
+
         font-size: 1rem;
+
     }
+
+
 
     /* تقليل المسافات بين أيقونات التواصل */
+
     .social-icons {
+
         gap: 0.8rem;
+
         margin-bottom: 2rem;
+
     }
+
+
 
     .social-btn {
+
         width: 45px;
+
         height: 45px;
+
         font-size: 1.2rem;
+
     }
+
+
 
     /* تعديل حجم أزرار الطلب الرئيسية */
+
     .link-btn {
+
         min-height: 60px;
+
         font-size: 1.1rem;
+
         border-radius: 16px;
+
     }
+
+
 
     /* =========================================
+
        تحسينات المنيو (قائمة الطعام) للهاتف
+
        ========================================= */
+
     .menu-sheet {
+
         padding: 1.5rem 1rem;
+
         border-radius: 24px 24px 0 0;
+
     }
+
+
 
     /* جعل شريط التنقل العلوي للمنيو يسحب لليمين واليسار بسلاسة */
+
     .menu-nav {
+
         display: flex;
+
         gap: 8px;
+
         overflow-x: auto;
+
         padding-bottom: 20px;
+
         -ms-overflow-style: none;
+
         scrollbar-width: none;
+
     }
+
     .menu-nav::-webkit-scrollbar {
+
         display: none;
+
     }
+
+
 
     .nav-btn {
+
     padding: 6px 12px;
+
     font-size: 0.9rem;
+
     /* استبدل nowrap بـ normal أو wrap للسماح للنص بالانقسام */
-    white-space: normal; 
+
+    white-space: normal;
+
     /* إضافة محاذاة للنص لضمان التنسيق الجيد عند تعدد الأسطر */
-    text-align: center; 
+
+    text-align: center;
+
         }
+
     .category-title {
+
         font-size: 1.2rem;
+
     }
+
+
 
     .menu-item {
+
         padding: 1rem 0.5rem;
+
     }
+
+
 
     .menu-info h4 {
+
         font-size: 1rem;
+
     }
+
+
 
     .menu-info .price {
+
         font-size: 0.9rem;
+
     }
+
+
 
     /* تصغير زر الطلب الأخضر (الواتساب) داخل المنيو */
+
     .order-sm-btn {
+
         width: 40px;
+
         height: 40px;
+
         font-size: 1.1rem;
+
     }
+
 }
+
+
 
 /* إصلاح مشكلة أزرار التمرير (النافيجيشن) إذا لم تكن مصممة مسبقاً */
+
 .menu-nav {
+
     display: flex;
+
     gap: 10px;
+
     margin-bottom: 1.5rem;
+
     justify-content: center;
+
     flex-wrap: wrap;
+
 }
+
+
 
 .nav-btn {
+
     background: var(--toggle-bg);
+
     color: var(--text-primary);
+
     border: none;
+
     padding: 8px 15px;
+
     border-radius: 20px;
+
     font-weight: bold;
+
     cursor: pointer;
+
     transition: all 0.3s ease;
+
 }
 
+
+
 .nav-btn:active {
+
     transform: scale(0.9);
+
     background: var(--yemeksepeti);
+
     color: white;
-}
-.btn-custon {
-    background-color: rgb(255, 58, 9); /* هذا هو اللون الذي تريد تغييره */
-    color: white; /* لون النص */
-   
+
 }
